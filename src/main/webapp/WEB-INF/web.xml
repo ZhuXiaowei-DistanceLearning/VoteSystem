@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>voteSystem</display-name>
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>http://www.vote.com</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, POST, HEAD, PUT, DELETE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportedHeaders</param-name>
+			<param-value>Accept, Origin, X-Requested-With, Content-Type,
+				Last-Modified
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.exposedHeaders</param-name>
+			<param-value>Set-Cookie</param-value>
+		</init-param>
+		<init-param>
+			<param-name>cors.supportsCredentials</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- <filter> <filter-name>MyFilter</filter-name> <filter-class>com.zxw.filter.MyFilter</filter-class> 
+		</filter> <filter-mapping> <filter-name>MyFilter</filter-name> <url-pattern>/*</url-pattern> 
+		</filter-mapping> -->
+	<!-- <listener> <listener-class>com.zxw.listener.contextLoaderListener</listener-class> 
+		</listener> -->
+	<description>Vote System</description>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+
+		<!-- <discription></discription> 是对站台的描述 <display-name></display-name> 
+			定义站台的名称 <distributable/> 是指定该站台是否可分布式处理 <session-config></session-config> 
+			用来定义web站台中的session参数，包含一个子元素： <session-timeout></session-timeout> 用来定义这个web站台所有session的有效期限，单位为分钟 
+			<mime-mapping></mime-mapping> 定义某一个扩展名和某一个MIME Type做对映，包含两个子元素： <extension></extension> 
+			扩展名的名称 <mime-type></mime-type> MIME格式 <taglib></taglib> 用来设定JSP网页所用到的Tag 
+			Library路径，有两个子元素： <taglib-uri></taglib-uri> 定义TLD文件的URI，在JSP网页中用taglib指令便可取得该URI的TLD文件 
+			<taglib-location></taglib-location> 指定TLD文件相对于web站台的存放位置 <error-page></error-page> 
+			用来处理错误代码或异常的页面，有三个子元素： <error-code></error-code> 指定错误代码 <exception-type></exception-type> 
+			指定一个JAVA异常类型 <location></location> 指定在web站台内的相关资源路径 <jsp-config> 包括<taglib> 
+			和<jsp-property-group> 两个子元素。 其中<taglib>元素在JSP 1.2时就已经存在；而<jsp-property-group>是JSP 
+			2.0 新增的元素。 <jsp-property-group>元素主要有八个子元素，它们分别为： 1.<description>：设定的说明； 2.<display-name>：设定名称； 
+			3.<url-pattern>：设定值所影响的范围，如：/CH2 或 /*.jsp； 4.<el-ignored>：若为true，表示不支持EL 
+			语法； 5.<scripting-invalid>：若为true，表示不支持<% scripting %>语法； 6.<page-encoding>：设定JSP 
+			网页的编码； 7.<include-prelude>：设置JSP 网页的抬头，扩展名为.jspf； 8.<include-coda>：设置JSP 
+			网页的结尾，扩展名为.jspf。 2、Web 应用名称：提供GUI工具可能会用来标记这个特定的Web应用的一个名称 <display-name>Tomcat 
+			Example</display-name> 3、Web 应用描述： 给出于此相关的说明性文本 <disciption>Tomcat Example 
+			servlets and JSP pages.</disciption> -->
+	</welcome-file-list>
+	<servlet>
+		<!-- <jsp-file></jsp-file> 指定web站台中的某个JSP网页的完整路径 <init-param></init-param> 
+			用来定义参数，可有多个init-param。在servlet类中通过getInitParamenter(String name)方法访问初始化参数 
+			<load-on-startup></load-on-startup>指定当Web应用启动时，装载Servlet的次序。 当值为正数或零时：Servlet容器先加载数值小的servlet，再依次加载其他数值大的servlet. 
+			当值为负或未定义：Servlet容器将在Web客户首次访问这个servlet时加载它 <servlet-mapping></servlet-mapping> 
+			用来定义servlet所对应的URL，包含两个子元素 -->
+		<servlet-name>VoteServlet</servlet-name>
+		<servlet-class>com.zxw.web.VoteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VoteServlet</servlet-name>
+		<url-pattern>/vote/*</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> <servlet-name>LoginServlet</servlet-name> <servlet-class>com.zxw.web.LoginServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>LoginServlet</servlet-name> <url-pattern>/login/*</url-pattern> 
+		</servlet-mapping> -->
+</web-app>
